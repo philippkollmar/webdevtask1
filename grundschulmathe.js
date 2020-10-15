@@ -1,10 +1,9 @@
 alert('Grundschulmathe')
 
 var i;
-var points= 0;
 
 for (i = 0; i < 5; i++) {
-
+var points= 0;
 var number1 = Math.floor(Math.random()*20);
 var number2 = Math.floor(Math.random()*20);
 var solution = number1 + number2;
