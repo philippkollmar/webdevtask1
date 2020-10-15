@@ -1,7 +1,10 @@
 alert('Grundschulmathe')
-var number = prompt("Wieviel ist 15 + 8");
+var number1 = Math.floor(Math.random()*20);
+var number2 = Math.floor(Math.random()*20);
 
-if (number == 23) {
+var userNumber = prompt("Wieviel ist" + number1 + "+" + number2);
+
+if (userNumber == 23) {
     alert('Korrekt')
 }
 else{
