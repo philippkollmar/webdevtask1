@@ -35,3 +35,5 @@ else {
     alert('falsche Antwort ' + points + "/5")
 }
 }
+
+alert ('Du hast ' + points + " Aufgaben von 5 richtig beantwortet." )
