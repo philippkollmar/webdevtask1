@@ -18,17 +18,18 @@ function askAditionTask(mathFn, opratorLiteral) {
     );
 
     if (userNumber === solution) {
-        return 1;
+        return true;
     }
-    return 0;
+    return false;
 }
 //Addition
 var i = 0;
 var points = 0;
 for (i = 0; i < 5; i++) {
     let result = askAditionTask((a, b) => { return a + b }, '+');
-    points += result;
+
     if (result) {
+        points ++;
         alert('Korrekte Antwort: ' + points + '/5')
     } else {
         alert('Falsche Antwort: ' + points + '/5')
@@ -74,14 +75,15 @@ else {
 //Multiplikation
 if (pointsSub >= 4) {
     alert('Level 3: Multiplikation')
-    var pointsMul = 0;
+    var points = 0;
     for (i = 0; i < 5; i++) {
-        pointsMul += askAditionTask((a, b) => { return a * b }, '*');
-
-        if(pointsMul){
-            alert('Korrekte Antwort: ' + pointsMul + '/5')
+        let result= askAditionTask((a, b) => { return a * b }, '*');
+        
+        if(result){
+            points++;
+            alert('Korrekte Antwort: ' + points + '/5')
         } else {
-            alert('Falsche Antwort: ' + pointsMul + '/5')
+            alert('Falsche Antwort: ' + points + '/5')
         }
     }
 }
