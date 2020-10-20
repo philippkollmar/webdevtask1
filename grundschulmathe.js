@@ -1,55 +1,117 @@
+
 alert('Grundschulmathe')
 
-var i;
+
+//Zufallszahl
+const generateRandomnumber = (max) => Math.floor(Math.random() * max + 1);
+
+//Addition/Multiplikation (Funktion)
+function askAditionTask(mathFn, opratorLiteral) {
+    var number1 = generateRandomnumber(20);
+    var number2 = generateRandomnumber(20);
+
+    var solution = mathFn(number1, number2);
+
+    var userNumber = parseInt(
+        prompt(`Wieviel ist ${number1} ${opratorLiteral} ${number2}`),
+        10
+    );
+
+    if (userNumber === solution) {
+        return true;
+    }
+    return false;
+}
+//Addition
+var i = 0;
 var points = 0;
-
 for (i = 0; i < 5; i++) {
-var number1 = Math.floor(Math.random()*21);
-var number2 = Math.floor(Math.random()*21);
-var solution = number1 + number2;
+    let result = askAditionTask((a, b) => { return a + b }, '+');
 
-var userNumber = prompt("Wieviel ist " + number1 + " + " + number2);
-//pointcounter
-if (userNumber == solution) {
-    points++;
-}
-
-//alert
-if (userNumber == solution) {
-    alert('Korrekt '+ points +"/5") 
-}
-else {
-    alert('falsche Antwort ' + points + "/5")
-}
+    if (result) {
+        points ++;
+        alert('Korrekte Antwort: ' + points + '/5')
+    } else {
+        alert('Falsche Antwort: ' + points + '/5')
+    }
 
 }
+alert('Du hast ' + points + " Aufgaben von 5 richtig beantwortet.")
 
-alert ('Du hast ' + points + " Aufgaben von 5 richtig beantwortet." )
-
+//Subtraktion
 var pointsSub = 0;
-
-if (points>=4){
-    alert ('Level 2: Subtraktion' )
+if (points >= 4) {
+    alert('Level 2: Subtraktion')
     for (i = 0; i < 5; i++) {
-        var number3 = Math.floor(Math.random()*11)+10;
-        var number4 = Math.floor(Math.random()*11);
-        var solutionSub = number3 - number4;
-        var userNumber = prompt("Wieviel ist " + number3 + " - " + number4);
-    
-        //pointcounter
-     if (userNumber == solutionSub) {
-            pointsSub++;
+        var number3 = generateRandomnumber(20);
+        var number4 = generateRandomnumber(20);
+        let solutionSub;
+        let question;
+        if (number3 >= number4) {
+            solutionSub = number3 - number4
+            question = `Wieviel ist ${number3} - ${number4}?`
+        } else {
+            solutionSub = number4 - number3
+            question = `Wieviel ist ${number4} - ${number3}?`
         }
+
+        var userNumber = prompt(question);
 
         //alert
         if (userNumber == solutionSub) {
-            alert('Korrekt '+ pointsSub +"/5") 
+            pointsSub++;
+            alert('Korrekt ' + pointsSub + "/5")
         }
         else {
             alert('falsche Antwort ' + pointsSub + "/5")
         }
+    }
+}
+else {
+    alert('Bitte versuche es erneut')
+}
 
+
+//Multiplikation
+if (pointsSub >= 4) {
+    alert('Level 3: Multiplikation')
+    var points = 0;
+    for (i = 0; i < 5; i++) {
+        let result= askAditionTask((a, b) => { return a * b }, '*');
+        
+        if(result){
+            points++;
+            alert('Korrekte Antwort: ' + points + '/5')
+        } else {
+            alert('Falsche Antwort: ' + points + '/5')
         }
+    }
+}
+else {
+    alert('Bitte versuche es erneut')
+}
+
+pointsMul = 4;
+if (pointsMul >= 4) {
+    alert('Level 4: Division')
+    var pointsDiv = 0;
+    for (i = 0; i < 5; i++) {
+        let numerator = generateRandomnumber(9);
+        let denominator = generateRandomnumber(9);
+        let userNumerator = numerator * denominator;
+        let solutionDiv = userNumerator / denominator;
+
+        var userNumber = prompt(`Wieviel ist ${userNumerator} / ${denominator}?`)
+
+        //alert
+        if (userNumber == solutionDiv) {
+            pointsDiv++;
+            alert('Korrekt ' + pointsDiv + "/5")
+        }
+        else {
+            alert('falsche Antwort ' + pointsDiv + "/5")
+        }
+    }
 }
 else {
     alert('Bitte versuche es erneut')
