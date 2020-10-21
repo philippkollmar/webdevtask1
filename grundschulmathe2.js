@@ -4,31 +4,17 @@ alert('Grundschulmathe')
 //Zufallszahl
 const generateRandomnumber = (max) => Math.floor(Math.random() * max + 1);
 
-let whichNumberPair = true;
-
-//Addition/Multiplikation (Funktion)
-function askTask(mathFn, operatorLiteral) {
-    var number1 = generateRandomnumber(20);
-    var number2 = generateRandomnumber(20);
-
-    var solution = mathFn(number1, number2);
-
-    var userNumber = parseInt(
-        prompt(`Wieviel ist ${number1} ${operatorLiteral} ${number2}`),
-        10
-    );
-
-    if (userNumber === solution) {
-        return 1;
-    }
-    return 0;
-}
-
 //Subtraktion/Division (Funktion)
-function askTaskSubDiv(mathFn, operatorLiteral) {
+function askTask(mathFn, operatorLiteral) {
     let question;
     let solution;
-    if (whichNumberPair === false) {
+    if (numberPair === 0) {
+        var number1 = generateRandomnumber(20);
+        var number2 = generateRandomnumber(20);
+        solution = mathFn(number1, number2)
+        question = `Wieviel ist ${number1} ${operatorLiteral} ${number2}?`
+
+    } else if (numberPair === 1) {
         let numerator = generateRandomnumber(9);
         let denominator = generateRandomnumber(9);
         let userNumerator = numerator * denominator;
@@ -57,6 +43,8 @@ function askTaskSubDiv(mathFn, operatorLiteral) {
 
 }
 
+// Variable die für das Auswählen des richtigen Zahlenpaares verwendet wird: 0(Addition/Multiplikation), 1(Division), else(Subtraktion)
+let numberPair = 0;
 
 //Addition
 var i = 0;
@@ -77,12 +65,12 @@ alert('Du hast ' + points + " Aufgaben von 5 richtig beantwortet.")
 
 
 //Subtraktion
-
+numberPair = 2;
 if (points >= 4) {
     alert('Level 2: Subtraktion')
     points = 0;
     for (i = 0; i < 5; i++) {
-        let result = askTaskSubDiv((a, b) => { return a - b }, '-');
+        let result = askTask((a, b) => { return a - b }, '-');
 
         if (result) {
             points++;
@@ -100,7 +88,7 @@ alert('Du hast ' + points + " Aufgaben von 5 richtig beantwortet.")
 
 
 //Multiplikation
-
+numberPair = 0;
 if (points >= 4) {
     alert('Level 3: Multiplikation')
     var points = 0;
@@ -121,12 +109,12 @@ else {
 alert('Du hast ' + points + " Aufgaben von 5 richtig beantwortet.")
 
 //Division
-whichNumberPair = false;
+numberPair = 1;
 if (points >= 4) {
     alert('Level 4: Division')
     points = 0;
     for (i = 0; i < 5; i++) {
-        let result = askTaskSubDiv((a, b) => { return a / b }, '/');
+        let result = askTask((a, b) => { return a / b }, '/');
 
         if (result) {
             points++;
