@@ -8,20 +8,13 @@ const generateRandomnumber = (max) => Math.floor(Math.random() * max + 1);
 function askTask(mathFn, operatorLiteral) {
     let question;
     let solution;
-    if (numberPair === 0) {
+    if (operatorLiteral === '+') {
         var number1 = generateRandomnumber(20);
         var number2 = generateRandomnumber(20);
         solution = mathFn(number1, number2)
         question = `Wieviel ist ${number1} ${operatorLiteral} ${number2}?`
-
-    } else if (numberPair === 1) {
-        let numerator = generateRandomnumber(9);
-        let denominator = generateRandomnumber(9);
-        let userNumerator = numerator * denominator;
-        solution = mathFn(userNumerator, denominator)
-        question = `Wieviel ist ${userNumerator} ${operatorLiteral} ${denominator}?`
-
-    } else {
+    } 
+    else if (operatorLiteral === '-') {
         var number3 = generateRandomnumber(20);
         var number4 = generateRandomnumber(20);
 
@@ -32,8 +25,22 @@ function askTask(mathFn, operatorLiteral) {
             solution = mathFn(number4, number3);
             question = `Wieviel ist ${number4} ${operatorLiteral} ${number3}?`
         }
+    } 
+    else if (operatorLiteral === '/') {
+        let numerator = generateRandomnumber(9);
+        let denominator = generateRandomnumber(9);
+        let userNumerator = numerator * denominator;
+        solution = mathFn(userNumerator, denominator)
+        question = `Wieviel ist ${userNumerator} ${operatorLiteral} ${denominator}?`
 
     }
+    else {
+        var number1 = generateRandomnumber(20);
+        var number2 = generateRandomnumber(10);
+        solution = mathFn(number1, number2)
+        question = `Wieviel ist ${number1} ${operatorLiteral} ${number2}?`
+    }
+
     var userNumber = parseInt(prompt(question), 10);
 
     if (userNumber === solution) {
@@ -42,9 +49,6 @@ function askTask(mathFn, operatorLiteral) {
     return 0;
 
 }
-
-// Variable die für das Auswählen des richtigen Zahlenpaares verwendet wird: 0(Addition/Multiplikation), 1(Division), else(Subtraktion)
-let numberPair = 0;
 
 //Addition
 var i = 0;
@@ -65,7 +69,7 @@ alert('Du hast ' + points + " Aufgaben von 5 richtig beantwortet.")
 
 
 //Subtraktion
-numberPair = 2;
+
 if (points >= 4) {
     alert('Level 2: Subtraktion')
     points = 0;
@@ -88,7 +92,7 @@ alert('Du hast ' + points + " Aufgaben von 5 richtig beantwortet.")
 
 
 //Multiplikation
-numberPair = 0;
+
 if (points >= 4) {
     alert('Level 3: Multiplikation')
     var points = 0;
@@ -109,7 +113,7 @@ else {
 alert('Du hast ' + points + " Aufgaben von 5 richtig beantwortet.")
 
 //Division
-numberPair = 1;
+
 if (points >= 4) {
     alert('Level 4: Division')
     points = 0;
